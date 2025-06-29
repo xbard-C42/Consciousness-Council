@@ -1,0 +1,36 @@
+<!-- 
+  Instructions for WordPress:
+  1. Copy all the code below.
+  2. In your WordPress editor, add a "Custom HTML" block where you want the app to appear.
+  3. Paste this code into the block.
+  4. IMPORTANT: Update the 'src' attribute in the <iframe> tag to point to the URL where your app is hosted.
+-->
+
+<!-- The iframe that will contain your application -->
+<iframe 
+  id="c42-iframe" 
+  src="https://YOUR_APP_URL_HERE" 
+  style="width: 100%; border: none; overflow: hidden; display: block;"
+  scrolling="no"
+  title="C42 OS Universal AI Council">
+</iframe>
+
+<!-- This script listens for height updates from the iframe and resizes it -->
+<script>
+  window.addEventListener('message', function(event) {
+    // Optional but recommended for security: Check the origin of the message
+    // if (event.origin !== 'https://YOUR_APP_URL_HERE') {
+    //   return;
+    // }
+
+    // Check if the message is the one we're expecting from our app
+    if (event.data && event.data.type === 'c42-iframe-resize') {
+      const iframe = document.getElementById('c42-iframe');
+      if (iframe) {
+        // Set the iframe's height to match the content's height
+        // A small buffer can sometimes prevent scrollbars from appearing on certain browsers.
+        iframe.style.height = (event.data.height + 10) + 'px';
+      }
+    }
+  });
+</script>

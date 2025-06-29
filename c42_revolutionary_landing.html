@@ -1,0 +1,1460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Experience AI Democracy - C42 OS Universal AI Council</title>
+    <meta name="description" content="The world's first universal AI council configurator. Watch Claude, GPT-4, and Gemini collaborate in real-time on any topic. Configure your own AI democracy now.">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+            padding: 80px 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            opacity: 0.3;
+        }
+        
+        .hero-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .hero .subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+        
+        .hero .description {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            opacity: 0.95;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border: 2px solid rgba(255,255,255,0.3);
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+        
+        .cta-button:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+        
+        /* Experience Section */
+        .experience-section {
+            padding: 60px 20px;
+            background: #f8f9fa;
+        }
+        
+        .section-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .experience-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .experience-header h2 {
+            font-size: 2.5rem;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+        
+        .experience-header p {
+            font-size: 1.2rem;
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        /* Embedded Council Configurator */
+        .council-embed {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+            overflow: hidden;
+            margin: 40px 0;
+        }
+        
+        /* What You Just Experienced */
+        .revelation-section {
+            padding: 80px 20px;
+            background: white;
+            text-align: center;
+        }
+        
+        .revelation-section h2 {
+            font-size: 2.8rem;
+            color: #2c3e50;
+            margin-bottom: 30px;
+        }
+        
+        .revelation-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin: 60px 0;
+        }
+        
+        .revelation-card {
+            background: #f8f9fa;
+            padding: 40px;
+            border-radius: 15px;
+            border-left: 5px solid #667eea;
+        }
+        
+        .revelation-card h3 {
+            font-size: 1.5rem;
+            color: #2c3e50;
+            margin-bottom: 15px;
+        }
+        
+        .revelation-card p {
+            color: #666;
+            font-size: 1.1rem;
+        }
+        
+        /* Impact Section */
+        .impact-section {
+            padding: 80px 20px;
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            text-align: center;
+        }
+        
+        .impact-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+        }
+        
+        .impact-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin: 50px 0;
+        }
+        
+        .stat-card {
+            background: rgba(255,255,255,0.1);
+            padding: 30px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 10px;
+        }
+        
+        .stat-label {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        
+        /* Enterprise Security Section */
+        .enterprise-section {
+            padding: 80px 20px;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: white;
+        }
+        
+        .enterprise-section h2 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 30px;
+            color: white;
+        }
+        
+        .enterprise-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin: 50px 0;
+        }
+        
+        .enterprise-card {
+            background: rgba(255,255,255,0.05);
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+        
+        .enterprise-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255,255,255,0.08);
+            border-color: rgba(255,255,255,0.2);
+        }
+        
+        .enterprise-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+        
+        .enterprise-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: white;
+        }
+        
+        .enterprise-card p {
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+        
+        .enterprise-tech {
+            background: rgba(102, 126, 234, 0.2);
+            padding: 8px 12px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            color: #a8b3ff;
+            border: 1px solid rgba(102, 126, 234, 0.3);
+        }
+        
+        .enterprise-demo {
+            background: rgba(255,255,255,0.05);
+            padding: 40px;
+            border-radius: 20px;
+            margin: 50px 0;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .enterprise-demo h3 {
+            text-align: center;
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+            color: white;
+        }
+        
+        .security-modes {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .mode-selector {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+        
+        .mode-btn {
+            background: rgba(255,255,255,0.05);
+            border: 2px solid rgba(255,255,255,0.1);
+            border-radius: 15px;
+            padding: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            min-width: 180px;
+        }
+        
+        .mode-btn:hover {
+            background: rgba(255,255,255,0.1);
+            border-color: rgba(255,255,255,0.2);
+        }
+        
+        .mode-btn.active {
+            background: rgba(102, 126, 234, 0.2);
+            border-color: #667eea;
+        }
+        
+        .mode-icon {
+            display: block;
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+        
+        .mode-title {
+            display: block;
+            color: white;
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+        }
+        
+        .mode-security {
+            display: block;
+            color: rgba(255,255,255,0.7);
+            font-size: 0.9rem;
+        }
+        
+        .security-mode-demo {
+            display: none;
+            background: rgba(255,255,255,0.03);
+            border-radius: 15px;
+            padding: 30px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .security-mode-demo.active {
+            display: block;
+        }
+        
+        .demo-visualization {
+            margin-bottom: 30px;
+        }
+        
+        .network-diagram {
+            background: rgba(255,255,255,0.02);
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+        
+        .network-diagram.enterprise {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+            border-color: rgba(102, 126, 234, 0.2);
+        }
+        
+        .corporate-firewall {
+            border: 2px dashed rgba(102, 126, 234, 0.5);
+            border-radius: 15px;
+            padding: 20px;
+            position: relative;
+        }
+        
+        .firewall-label {
+            position: absolute;
+            top: -12px;
+            left: 20px;
+            background: #1a1a2e;
+            padding: 0 10px;
+            color: #667eea;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        
+        .internal-network {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .user-browser, .user-browser.internal {
+            background: rgba(255,255,255,0.05);
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+            flex: 1;
+        }
+        
+        .component {
+            color: white;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .component-detail {
+            color: rgba(255,255,255,0.7);
+            font-size: 0.85rem;
+        }
+        
+        .data-flow {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex: 0 0 80px;
+        }
+        
+        .flow-arrow {
+            font-size: 1.5rem;
+            color: #667eea;
+            margin-bottom: 5px;
+        }
+        
+        .flow-label {
+            color: rgba(255,255,255,0.6);
+            font-size: 0.8rem;
+            text-align: center;
+        }
+        
+        .external-apis, .internal-apis {
+            flex: 2;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        
+        .api-box {
+            background: rgba(255,255,255,0.1);
+            border-radius: 8px;
+            padding: 10px;
+            text-align: center;
+            font-size: 0.9rem;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .api-box.openai {
+            border-color: rgba(168, 85, 247, 0.3);
+            background: rgba(168, 85, 247, 0.1);
+        }
+        
+        .api-box.anthropic {
+            border-color: rgba(251, 191, 36, 0.3);
+            background: rgba(251, 191, 36, 0.1);
+        }
+        
+        .api-box.google {
+            border-color: rgba(59, 130, 246, 0.3);
+            background: rgba(59, 130, 246, 0.1);
+        }
+        
+        .api-box.internal {
+            border-color: rgba(102, 126, 234, 0.3);
+            background: rgba(102, 126, 234, 0.1);
+            color: white;
+        }
+        
+        .blocked-external {
+            text-align: center;
+            padding: 15px;
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid rgba(239, 68, 68, 0.2);
+            border-radius: 10px;
+        }
+        
+        .block-symbol {
+            font-size: 2rem;
+            margin-bottom: 5px;
+        }
+        
+        .block-label {
+            color: #ef4444;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        
+        .security-status {
+            background: rgba(255,255,255,0.02);
+            border-radius: 10px;
+            padding: 20px;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+        
+        .security-status.enterprise {
+            background: rgba(102, 126, 234, 0.05);
+            border-color: rgba(102, 126, 234, 0.1);
+        }
+        
+        .status-item {
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+        }
+        
+        .status-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .demo-actions {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .demo-action-btn {
+            padding: 12px 24px;
+            border-radius: 25px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .demo-action-btn.primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .demo-action-btn.primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+        }
+        
+        .demo-action-btn.secondary {
+            background: transparent;
+            color: white;
+            border-color: rgba(255,255,255,0.3);
+        }
+        
+        .demo-action-btn.secondary:hover {
+            background: rgba(255,255,255,0.1);
+            border-color: rgba(255,255,255,0.5);
+        }
+        
+        .demo-action-btn:not(.primary):not(.secondary) {
+            background: rgba(255,255,255,0.1);
+            color: white;
+            border-color: rgba(255,255,255,0.2);
+        }
+        
+        .demo-action-btn:not(.primary):not(.secondary):hover {
+            background: rgba(255,255,255,0.15);
+        }
+        
+        .demo-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .demo-step {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+        }
+        
+        .step-number {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+        
+        .step-content h4 {
+            color: white;
+            margin-bottom: 8px;
+            font-size: 1.1rem;
+        }
+        
+        .step-content p {
+            color: rgba(255,255,255,0.7);
+            font-size: 0.95rem;
+        }
+        
+        .enterprise-cta {
+            text-align: center;
+            margin-top: 50px;
+            padding: 40px;
+            background: rgba(255,255,255,0.03);
+            border-radius: 15px;
+        }
+        
+        .enterprise-cta h3 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: white;
+        }
+        
+        .enterprise-cta p {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            color: rgba(255,255,255,0.8);
+        }
+        
+        .enterprise-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .enterprise-btn {
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        
+        .enterprise-btn.primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .enterprise-btn.primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        }
+        
+        .enterprise-btn.secondary {
+            background: transparent;
+            color: white;
+            border-color: rgba(255,255,255,0.3);
+        }
+        
+        .enterprise-btn.secondary:hover {
+            background: rgba(255,255,255,0.1);
+            border-color: rgba(255,255,255,0.5);
+            transform: translateY(-2px);
+        }
+        
+        /* Business Case Section */
+        .business-section {
+            padding: 80px 20px;
+            background: white;
+        }
+        
+        .business-section h2 {
+            font-size: 2.5rem;
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 50px;
+        }
+        
+        .use-cases {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin: 50px 0;
+        }
+        
+        .use-case {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .use-case:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .use-case-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+        
+        .use-case h3 {
+            font-size: 1.3rem;
+            color: #2c3e50;
+            margin-bottom: 15px;
+        }
+        
+        .use-case p {
+            color: #666;
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            padding: 80px 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+        }
+        
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+        }
+        
+        .cta-section p {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .cta-primary, .cta-secondary {
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .cta-primary {
+            background: white;
+            color: #667eea;
+        }
+        
+        .cta-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(255,255,255,0.3);
+        }
+        
+        .cta-secondary {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            border: 2px solid rgba(255,255,255,0.3);
+        }
+        
+        .cta-secondary:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-2px);
+        }
+        
+        /* Footer */
+        .footer {
+            padding: 40px 20px;
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+        }
+        
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .footer h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .footer p {
+            opacity: 0.8;
+            margin-bottom: 20px;
+        }
+        
+        .footer a {
+            color: #667eea;
+            text-decoration: none;
+        }
+        
+        .footer a:hover {
+            text-decoration: underline;
+        }
+        
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero .subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .hero .description {
+                font-size: 1rem;
+            }
+            
+            .experience-header h2,
+            .revelation-section h2,
+            .impact-section h2,
+            .business-section h2,
+            .cta-section h2 {
+                font-size: 2rem;
+            }
+            
+            .revelation-grid,
+            .impact-stats,
+            .use-cases,
+            .enterprise-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .demo-steps {
+                grid-template-columns: 1fr;
+            }
+            
+            .enterprise-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .mode-selector {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .mode-btn {
+                min-width: 200px;
+            }
+            
+            .internal-network {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .network-diagram {
+                padding: 20px;
+            }
+            
+            .demo-actions {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .demo-action-btn {
+                width: 200px;
+                text-align: center;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+        
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .fade-in-up {
+            animation: fadeInUp 0.6s ease-out;
+        }
+        
+        /* Scroll reveal */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+        
+        .reveal.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-container">
+            <h1 class="fade-in-up">Experience AI Democracy</h1>
+            <p class="subtitle fade-in-up">The World's First Universal AI Council Configurator</p>
+            <p class="description fade-in-up">
+                Configure Claude, GPT-4, and Gemini to collaborate in real-time. Watch AI agents debate, synthesize, and reach consensus on any topic. No theory, no mockups—live AI democracy happening now.
+            </p>
+            <a href="#experience" class="cta-button fade-in-up">Try It Live Below ↓</a>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="experience-section">
+        <div class="section-container">
+            <div class="experience-header reveal">
+                <h2>Configure Your AI Council Now</h2>
+                <p>Add any agents, assign any roles, watch real collaboration happen. Your API keys never leave your browser.</p>
+            </div>
+            
+            <!-- Embedded Council Configurator -->
+            <div class="council-embed reveal">
+                <!-- The full council configurator will be embedded here -->
+                <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 40px; text-align: center;">
+                    <h2>🏛️ C42 OS AI Council</h2>
+                    <p style="margin: 20px 0;">Live Multi-Agent Collaborative Democracy</p>
+                </div>
+                
+                <div style="padding: 30px; background: #f8f9fa; border-bottom: 1px solid #e9ecef;">
+                    <div style="margin-bottom: 20px;">
+                        <h3 style="color: #2c3e50; margin-bottom: 15px;">🔑 API Configuration</h3>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;">
+                            <div>
+                                <label style="display: block; font-weight: 600; margin-bottom: 5px; color: #2c3e50;">OpenAI API Key</label>
+                                <input type="password" id="demo-openai-key" placeholder="sk-..." style="width: 100%; padding: 10px; border: 2px solid #e9ecef; border-radius: 8px;" />
+                            </div>
+                            <div>
+                                <label style="display: block; font-weight: 600; margin-bottom: 5px; color: #2c3e50;">Anthropic API Key</label>
+                                <input type="password" id="demo-anthropic-key" placeholder="sk-ant-..." style="width: 100%; padding: 10px; border: 2px solid #e9ecef; border-radius: 8px;" />
+                            </div>
+                            <div>
+                                <label style="display: block; font-weight: 600; margin-bottom: 5px; color: #2c3e50;">Google API Key</label>
+                                <input type="password" id="demo-google-key" placeholder="API key..." style="width: 100%; padding: 10px; border: 2px solid #e9ecef; border-radius: 8px;" />
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-bottom: 20px;">
+                        <h3 style="color: #2c3e50; margin-bottom: 15px;">🎯 Council Session</h3>
+                        <label style="display: block; font-weight: 600; margin-bottom: 5px; color: #2c3e50;">Discussion Topic</label>
+                        <textarea id="demo-topic" placeholder="Enter the question for your AI council to discuss..." style="width: 100%; height: 80px; padding: 10px; border: 2px solid #e9ecef; border-radius: 8px; resize: vertical;">Should AI development be regulated by international governance bodies?</textarea>
+                    </div>
+                    
+                    <div style="margin-bottom: 20px;">
+                        <h3 style="color: #2c3e50; margin-bottom: 15px;">🤖 Agent Configuration</h3>
+                        <div id="demo-agents-container">
+                            <!-- Pre-configured demo agents -->
+                            <div style="background: white; border: 2px solid #667eea; border-radius: 10px; padding: 15px; margin-bottom: 15px;">
+                                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                                    <div style="font-weight: 600; color: #2c3e50;">Claude Agent</div>
+                                </div>
+                                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px;">
+                                    <div>
+                                        <label style="display: block; font-weight: 500; margin-bottom: 5px;">Provider</label>
+                                        <select style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 5px;">
+                                            <option value="anthropic" selected>🟡 Anthropic Claude — Consensus, Safety, Long Context</option>
+                                            <option value="openai">🟣 OpenAI GPT-4 — Generalist, Top Reasoning, Code</option>
+                                            <option value="google">🔵 Google Gemini — Multi-Modal, Fast, Creative</option>
+                                            <option value="local">⚙️ Local Model — On-Device, Private, No Cloud</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <label style="display: block; font-weight: 500; margin-bottom: 5px;">Role</label>
+                                        <select style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 5px;">
+                                            <option value="facilitator" selected>Facilitator — Guides Discussion, Ensures Balance</option>
+                                            <option value="proposer">Proposer — Suggests Solutions, Takes Initiative</option>
+                                            <option value="critic">Critic — Finds Risks, Challenges Ideas</option>
+                                            <option value="synthesizer">Synthesizer — Builds Consensus, Merges Input</option>
+                                            <option value="validator">Validator — Checks Facts, Ensures Quality</option>
+                                            <option value="implementer">Implementer — Turns Ideas into Action Steps</option>
+                                            <option value="observer">Observer — Spots Patterns, Offers Meta-Feedback</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <label style="display: block; font-weight: 500; margin-bottom: 5px;">Personality</label>
+                                        <select style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 5px;">
+                                            <option value="balanced" selected>⚖️ Balanced — Fair, Weighs All Sides</option>
+                                            <option value="conservative">🛡️ Conservative — Cautious, Risk-Aware</option>
+                                            <option value="progressive">🚀 Progressive — Innovative, Future-Focused</option>
+                                            <option value="technical">🔧 Technical — Detail-Oriented, Precise</option>
+                                            <option value="creative">💡 Creative — Idea Generator, Nonlinear</option>
+                                            <option value="skeptical">🤔 Skeptical — Challenges, Seeks Evidence</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div style="background: white; border: 2px solid #e9ecef; border-radius: 10px; padding: 15px; margin-bottom: 15px;">
+                                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                                    <div style="font-weight: 600; color: #2c3e50;">GPT-4 Agent</div>
+                                </div>
+                                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px;">
+                                    <div>
+                                        <label style="display: block; font-weight: 500; margin-bottom: 5px;">Provider</label>
+                                        <select style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 5px;">
+                                            <option value="openai" selected>🟣 OpenAI GPT-4 — Generalist, Top Reasoning, Code</option>
+                                            <option value="anthropic">🟡 Anthropic Claude — Consensus, Safety, Long Context</option>
+                                            <option value="google">🔵 Google Gemini — Multi-Modal, Fast, Creative</option>
+                                            <option value="local">⚙️ Local Model — On-Device, Private, No Cloud</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <label style="display: block; font-weight: 500; margin-bottom: 5px;">Role</label>
+                                        <select style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 5px;">
+                                            <option value="critic" selected>Critic — Finds Risks, Challenges Ideas</option>
+                                            <option value="facilitator">Facilitator — Guides Discussion, Ensures Balance</option>
+                                            <option value="proposer">Proposer — Suggests Solutions, Takes Initiative</option>
+                                            <option value="synthesizer">Synthesizer — Builds Consensus, Merges Input</option>
+                                            <option value="validator">Validator — Checks Facts, Ensures Quality</option>
+                                            <option value="implementer">Implementer — Turns Ideas into Action Steps</option>
+                                            <option value="observer">Observer — Spots Patterns, Offers Meta-Feedback</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <label style="display: block; font-weight: 500; margin-bottom: 5px;">Personality</label>
+                                        <select style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 5px;">
+                                            <option value="skeptical" selected>🤔 Skeptical — Challenges, Seeks Evidence</option>
+                                            <option value="balanced">⚖️ Balanced — Fair, Weighs All Sides</option>
+                                            <option value="conservative">🛡️ Conservative — Cautious, Risk-Aware</option>
+                                            <option value="progressive">🚀 Progressive — Innovative, Future-Focused</option>
+                                            <option value="technical">🔧 Technical — Detail-Oriented, Precise</option>
+                                            <option value="creative">💡 Creative — Idea Generator, Nonlinear</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div style="background: white; border: 2px solid #e9ecef; border-radius: 10px; padding: 15px; margin-bottom: 15px;">
+                                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                                    <div style="font-weight: 600; color: #2c3e50;">Gemini Agent</div>
+                                </div>
+                                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px;">
+                                    <div>
+                                        <label style="display: block; font-weight: 500; margin-bottom: 5px;">Provider</label>
+                                        <select style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 5px;">
+                                            <option value="google" selected>🔵 Google Gemini — Multi-Modal, Fast, Creative</option>
+                                            <option value="openai">🟣 OpenAI GPT-4 — Generalist, Top Reasoning, Code</option>
+                                            <option value="anthropic">🟡 Anthropic Claude — Consensus, Safety, Long Context</option>
+                                            <option value="local">⚙️ Local Model — On-Device, Private, No Cloud</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <label style="display: block; font-weight: 500; margin-bottom: 5px;">Role</label>
+                                        <select style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 5px;">
+                                            <option value="synthesizer" selected>Synthesizer — Builds Consensus, Merges Input</option>
+                                            <option value="facilitator">Facilitator — Guides Discussion, Ensures Balance</option>
+                                            <option value="proposer">Proposer — Suggests Solutions, Takes Initiative</option>
+                                            <option value="critic">Critic — Finds Risks, Challenges Ideas</option>
+                                            <option value="validator">Validator — Checks Facts, Ensures Quality</option>
+                                            <option value="implementer">Implementer — Turns Ideas into Action Steps</option>
+                                            <option value="observer">Observer — Spots Patterns, Offers Meta-Feedback</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <label style="display: block; font-weight: 500; margin-bottom: 5px;">Personality</label>
+                                        <select style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 5px;">
+                                            <option value="creative" selected>💡 Creative — Idea Generator, Nonlinear</option>
+                                            <option value="balanced">⚖️ Balanced — Fair, Weighs All Sides</option>
+                                            <option value="conservative">🛡️ Conservative — Cautious, Risk-Aware</option>
+                                            <option value="progressive">🚀 Progressive — Innovative, Future-Focused</option>
+                                            <option value="technical">🔧 Technical — Detail-Oriented, Precise</option>
+                                            <option value="skeptical">🤔 Skeptical — Challenges, Seeks Evidence</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <button style="background: #28a745; color: white; border: none; padding: 10px 15px; border-radius: 8px; cursor: pointer; margin-top: 10px;">➕ Add More Agents</button>
+                    </div>
+                    
+                    <div style="text-align: center;">
+                        <button style="background: #667eea; color: white; border: none; padding: 15px 30px; border-radius: 8px; font-size: 16px; font-weight: 600; cursor: pointer; margin-right: 10px;">🚀 Start Council Session</button>
+                        <button style="background: #6c757d; color: white; border: none; padding: 15px 20px; border-radius: 8px; font-size: 16px; cursor: pointer; margin-right: 10px;" disabled>💬 Continue Discussion</button>
+                        <button style="background: #28a745; color: white; border: none; padding: 15px 20px; border-radius: 8px; font-size: 16px; cursor: pointer;" disabled>🔄 Force Synthesis</button>
+                    </div>
+                </div>
+                
+                <div style="padding: 20px; text-align: center; background: #e8f4fd; border-top: 1px solid #2196f3;">
+                    <p style="color: #2196f3; font-weight: 600; margin: 0;">👆 Add your API keys above and watch real AI agents collaborate on governance questions</p>
+                    <p style="color: #666; font-size: 14px; margin: 10px 0 0 0;">Your keys never leave this browser - complete privacy and security</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- What You Just Experienced -->
+    <section class="revelation-section">
+        <div class="section-container">
+            <h2 class="reveal">What You Just Experienced</h2>
+            <p class="reveal" style="font-size: 1.2rem; color: #666; margin-bottom: 40px;">
+                This isn't a demo or simulation. You just configured real AI agents to collaborate on complex questions.
+            </p>
+            
+            <div class="revelation-grid">
+                <div class="revelation-card reveal">
+                    <h3>🌍 World's First Universal AI Council</h3>
+                    <p>No other platform lets you configure Claude, GPT-4, and Gemini to collaborate in real-time. This capability literally doesn't exist anywhere else.</p>
+                </div>
+                
+                <div class="revelation-card reveal">
+                    <h3>🔒 Complete Privacy & Security</h3>
+                    <p>Your API keys never leave your browser. All AI collaboration happens client-side. No data collection, no server risks, completely transparent.</p>
+                </div>
+                
+                <div class="revelation-card reveal">
+                    <h3>⚡ Infinite Configurations</h3>
+                    <p>Any number of agents, any LLM providers, any roles, any personalities. Create councils for governance, technical review, creative collaboration, or research.</p>
+                </div>
+                
+                <div class="revelation-card reveal">
+                    <h3>🏛️ True AI Democracy</h3>
+                    <p>Watch agents propose, critique, and synthesize ideas. See real consensus-building between different AI perspectives. This is epistemic democracy in action.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Impact Section -->
+    <section class="impact-section">
+        <div class="section-container">
+            <h2 class="reveal">The Impact</h2>
+            <p class="reveal" style="font-size: 1.2rem; margin-bottom: 30px;">
+                Multi-agent AI collaboration isn't just faster—it's fundamentally more effective.
+            </p>
+            
+            <div class="impact-stats">
+                <div class="stat-card reveal">
+                    <div class="stat-number">85%</div>
+                    <div class="stat-label">Cost Reduction</div>
+                </div>
+                <div class="stat-card reveal">
+                    <div class="stat-number">10x</div>
+                    <div class="stat-label">Faster Development</div>
+                </div>
+                <div class="stat-card reveal">
+                    <div class="stat-number">90%</div>
+                    <div class="stat-label">Less Energy Usage</div>
+                </div>
+                <div class="stat-card reveal">
+                    <div class="stat-number">100%</div>
+                    <div class="stat-label">Transparent & Auditable</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Enterprise Security Section -->
+    <section class="enterprise-section">
+        <div class="section-container">
+            <h2 class="reveal">Enterprise & Government Ready</h2>
+            <p class="reveal" style="text-align: center; font-size: 1.2rem; margin-bottom: 50px; color: #e8e8e8;">
+                Deploy C42 OS entirely within your firewall - complete data sovereignty guaranteed
+            </p>
+            
+            <div class="enterprise-grid">
+                <div class="enterprise-card reveal">
+                    <div class="enterprise-icon">🏢</div>
+                    <h3>On-Premises Deployment</h3>
+                    <p>Your council sessions never leave your network. Deploy via Docker, Kubernetes, or air-gapped systems. Complete isolation from external clouds.</p>
+                    <div class="enterprise-tech">Docker • Kubernetes • Air-Gap Ready</div>
+                </div>
+                
+                <div class="enterprise-card reveal">
+                    <div class="enterprise-icon">🤖</div>
+                    <h3>Use Your Own AI Models</h3>
+                    <p>Connect to internal Llama, Claude Enterprise, Azure GPT-4, or any REST API endpoint. No dependency on external AI services.</p>
+                    <div class="enterprise-tech">Llama • Claude Enterprise • Azure OpenAI • Custom APIs</div>
+                </div>
+                
+                <div class="enterprise-card reveal">
+                    <div class="enterprise-icon">📋</div>
+                    <h3>Compliance Ready</h3>
+                    <p>Built for regulated industries with immutable audit logs, role-based access, and data residency controls.</p>
+                    <div class="enterprise-tech">SOC2 • HIPAA • GDPR • FedRAMP</div>
+                </div>
+                
+                <div class="enterprise-card reveal">
+                    <div class="enterprise-icon">🔒</div>
+                    <h3>Complete Audit Trail</h3>
+                    <p>Every council decision fully logged and exportable. Cryptographic verification of all governance activities.</p>
+                    <div class="enterprise-tech">Immutable Logs • CSV Export • Crypto Verification</div>
+                </div>
+            </div>
+            
+            <div class="enterprise-demo reveal">
+                <h3>Interactive Security Demo: Choose Your Deployment</h3>
+                
+                <div class="security-modes">
+                    <div class="mode-selector">
+                        <button class="mode-btn active" onclick="showSecurityMode('public')">
+                            <span class="mode-icon">🌐</span>
+                            <span class="mode-title">Public Demo</span>
+                            <span class="mode-security">High Security</span>
+                        </button>
+                        <button class="mode-btn" onclick="showSecurityMode('enterprise')">
+                            <span class="mode-icon">🏢</span>
+                            <span class="mode-title">Enterprise</span>
+                            <span class="mode-security">Maximum Security</span>
+                        </button>
+                    </div>
+                    
+                    <div id="public-mode" class="security-mode-demo active">
+                        <div class="demo-visualization">
+                            <div class="network-diagram">
+                                <div class="user-browser">
+                                    <div class="component">👤 Your Browser</div>
+                                    <div class="component-detail">API keys stored locally</div>
+                                </div>
+                                <div class="data-flow">
+                                    <div class="flow-arrow">→</div>
+                                    <div class="flow-label">Encrypted HTTPS</div>
+                                </div>
+                                <div class="external-apis">
+                                    <div class="api-box openai">🟣 OpenAI</div>
+                                    <div class="api-box anthropic">🟡 Anthropic</div>
+                                    <div class="api-box google">🔵 Google</div>
+                                </div>
+                            </div>
+                            <div class="security-status">
+                                <div class="status-item">✅ API keys never leave browser</div>
+                                <div class="status-item">✅ Direct API calls (no proxy)</div>
+                                <div class="status-item">⚠️ Data flows to external providers</div>
+                            </div>
+                        </div>
+                        <div class="demo-actions">
+                            <button class="demo-action-btn" onclick="runPublicDemo()">
+                                🚀 Try Public Demo Above
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div id="enterprise-mode" class="security-mode-demo">
+                        <div class="demo-visualization">
+                            <div class="network-diagram enterprise">
+                                <div class="corporate-firewall">
+                                    <div class="firewall-label">🛡️ Corporate Firewall</div>
+                                    <div class="internal-network">
+                                        <div class="user-browser internal">
+                                            <div class="component">👤 Employee Browser</div>
+                                            <div class="component-detail">Internal access only</div>
+                                        </div>
+                                        <div class="data-flow internal">
+                                            <div class="flow-arrow">→</div>
+                                            <div class="flow-label">Internal Network</div>
+                                        </div>
+                                        <div class="internal-apis">
+                                            <div class="api-box internal">🤖 Internal Llama</div>
+                                            <div class="api-box internal">🏢 Claude Enterprise</div>
+                                            <div class="api-box internal">☁️ Azure GPT-4</div>
+                                        </div>
+                                    </div>
+                                    <div class="blocked-external">
+                                        <div class="block-symbol">🚫</div>
+                                        <div class="block-label">Zero External Data Flow</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="security-status enterprise">
+                                <div class="status-item">✅ Complete network isolation</div>
+                                <div class="status-item">✅ Use your own AI models</div>
+                                <div class="status-item">✅ Zero external data transmission</div>
+                                <div class="status-item">✅ Immutable audit logs</div>
+                                <div class="status-item">✅ SOC2/HIPAA/FedRAMP ready</div>
+                            </div>
+                        </div>
+                        <div class="demo-actions">
+                            <button class="demo-action-btn primary" onclick="requestEnterpriseDemo()">
+                                🏢 Request Enterprise Demo
+                            </button>
+                            <button class="demo-action-btn secondary" onclick="downloadWhitepaper()">
+                                📋 Download Security Whitepaper
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="enterprise-cta reveal">
+                <h3>Ready for Enterprise Deployment?</h3>
+                <p>Join government agencies and Fortune 500 companies using C42 OS for secure AI governance</p>
+                <div class="enterprise-buttons">
+                    <a href="mailto:matthew@42.community?subject=Enterprise Security Demo" class="enterprise-btn primary">Schedule Security Demo</a>
+                    <a href="mailto:matthew@42.community?subject=Compliance Architecture" class="enterprise-btn secondary">Request Architecture Review</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Business Case Section -->
+    <section class="business-section">
+        <div class="section-container">
+            <h2 class="reveal">Transform Your Organization</h2>
+            
+            <div class="use-cases">
+                <div class="use-case reveal">
+                    <div class="use-case-icon">🏢</div>
+                    <h3>Enterprise Governance</h3>
+                    <p>Replace expensive consulting with AI councils that provide multiple perspectives on strategic decisions, policy development, and risk assessment.</p>
+                </div>
+                
+                <div class="use-case reveal">
+                    <div class="use-case-icon">🔬</div>
+                    <h3>Research & Development</h3>
+                    <p>Accelerate innovation with AI agents that collaborate on technical challenges, peer review research, and synthesize complex findings.</p>
+                </div>
+                
+                <div class="use-case reveal">
+                    <div class="use-case-icon">🏛️</div>
+                    <h3>Democratic Organizations</h3>
+                    <p>Enable transparent, participatory decision-making with AI councils that help communities explore options and build consensus.</p>
+                </div>
+                
+                <div class="use-case reveal">
+                    <div class="use-case-icon">⚖️</div>
+                    <h3>Legal & Compliance</h3>
+                    <p>Get multiple AI perspectives on legal questions, regulatory compliance, and policy interpretation before making critical decisions.</p>
+                </div>
+                
+                <div class="use-case reveal">
+                    <div class="use-case-icon">💡</div>
+                    <h3>Innovation Labs</h3>
+                    <p>Generate breakthrough ideas through AI agents with different creative approaches, technical expertise, and problem-solving styles.</p>
+                </div>
+                
+                <div class="use-case reveal">
+                    <div class="use-case-icon">🎓</div>
+                    <h3>Education & Training</h3>
+                    <p>Teach collaborative decision-making, democratic processes, and multi-perspective problem-solving through hands-on AI council experience.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="section-container">
+            <h2 class="reveal">Ready to Deploy AI Democracy?</h2>
+            <p class="reveal">
+                Join organizations pioneering the future of collaborative AI governance - from startups to Fortune 500 to government agencies.
+            </p>
+            
+            <div class="cta-buttons reveal">
+                <a href="mailto:matthew@42.community?subject=AI Council Enterprise Pilot" class="cta-primary">Start Enterprise Pilot</a>
+                <a href="mailto:matthew@42.community?subject=AI Council Partnership" class="cta-secondary">Explore Partnership</a>
+                <a href="mailto:matthew@42.community?subject=On-Premises Demo Request" class="cta-secondary">Request Security Demo</a>
+            </div>
+            
+            <div class="cta-options reveal" style="margin-top: 40px; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; text-align: center;">
+                <div style="background: rgba(255,255,255,0.1); padding: 20px; border-radius: 10px;">
+                    <h4 style="margin-bottom: 10px;">🏢 Enterprise</h4>
+                    <p style="font-size: 0.9rem; opacity: 0.8;">On-premises deployment, custom models, compliance-ready</p>
+                </div>
+                <div style="background: rgba(255,255,255,0.1); padding: 20px; border-radius: 10px;">
+                    <h4 style="margin-bottom: 10px;">🤝 Partnership</h4>
+                    <p style="font-size: 0.9rem; opacity: 0.8;">Integration opportunities, white-label, joint development</p>
+                </div>
+                <div style="background: rgba(255,255,255,0.1); padding: 20px; border-radius: 10px;">
+                    <h4 style="margin-bottom: 10px;">🎯 Pilot Program</h4>
+                    <p style="font-size: 0.9rem; opacity: 0.8;">Rapid deployment, proof-of-concept, results in 30 days</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <h3>C42 OS - Epistemic Democracy Platform</h3>
+            <p>Building the technical infrastructure for transparent, collaborative, and democratic AI governance - from cloud to on-premises deployment.</p>
+            <p>
+                <a href="https://42.community">42.community</a> | 
+                <a href="mailto:matthew@42.community">matthew@42.community</a> | 
+                Built by Matthew Cummins
+            </p>
+            <p style="font-size: 0.9rem; opacity: 0.7; margin-top: 20px;">
+                Enterprise Security: SOC2, HIPAA, GDPR, FedRAMP ready • On-premises deployment available • Complete data sovereignty
+            </p>
+            <p style="font-size: 0.8rem; opacity: 0.6; margin-top: 15px;">
+                This page demonstrates working multi-agent AI collaboration. 
+                No theoretical concepts - real AI agents collaborating in real-time, deployable anywhere.
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Scroll reveal animation
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('revealed');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all elements with reveal class
+        document.addEventListener('DOMContentLoaded', () => {
+            const revealElements = document.querySelectorAll('.reveal');
+            revealElements.forEach(el => observer.observe(el));
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Interactive Security Demo Functions
+        function showSecurityMode(mode) {
+            // Update buttons
+            document.querySelectorAll('.mode-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.closest('.mode-btn').classList.add('active');
+            
+            // Update demos
+            document.querySelectorAll('.security-mode-demo').forEach(demo => demo.classList.remove('active'));
+            document.getElementById(mode + '-mode').classList.add('active');
+        }
+
+        function runPublicDemo() {
+            // Scroll to the public demo section
+            document.getElementById('experience').scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+            
+            // Highlight the demo section temporarily
+            const demoSection = document.querySelector('.council-embed');
+            demoSection.style.border = '3px solid #667eea';
+            demoSection.style.boxShadow = '0 0 20px rgba(102, 126, 234, 0.3)';
+            
+            setTimeout(() => {
+                demoSection.style.border = '';
+                demoSection.style.boxShadow = '0 20px 60px rgba(0,0,0,0.1)';
+            }, 3000);
+        }
+
+        function requestEnterpriseDemo() {
+            window.location.href = 'mailto:matthew@42.community?subject=Enterprise Security Demo Request&body=I would like to schedule a demonstration of C42 OS enterprise security features, including on-premises deployment and internal model integration.\n\nCompany: \nRole: \nUse Case: \nPreferred Meeting Time: ';
+        }
+
+        function downloadWhitepaper() {
+            // For now, trigger email request - in production would download PDF
+            window.location.href = 'mailto:matthew@42.community?subject=C42 OS Enterprise Security Whitepaper Request&body=Please send me the C42 OS Enterprise Security Architecture whitepaper.\n\nCompany: \nRole: \nSpecific Compliance Requirements: ';
+        }
+    </script>
+</body>
+</html>

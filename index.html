@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>C42 OS | The Community Principle</title>
+    <meta name="description" content="The Universal AI Council Configurator. Configure agents from different providers and watch them reason, debate, and build consensus in real time.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&family=JetBrains+Mono:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="index.css">
+<script type="importmap">
+{
+  "imports": {
+    "@google/genai": "https://esm.sh/@google/genai@^1.7.0"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+<body>
+    <header class="hero">
+        <div class="container">
+            <h1>The Community Principle</h1>
+            <p class="subtitle">AI alignment, consciousness, and safety emerge from community, not control.</p>
+            <a href="#experience" class="cta-button">Experience Live AI Democracy ↓</a>
+        </div>
+    </header>
+
+    <main>
+        <section id="experience" class="section experience-section">
+            <div class="container">
+                <div class="section-header reveal">
+                    <h2>Configure Your AI Council</h2>
+                    <p>Add agents, assign roles, and watch real-time collaboration. Your API keys never leave your browser.</p>
+                </div>
+                
+                <div class="council-embed reveal">
+                    <div class="council-configurator">
+                        <div class="configurator-body">
+                            
+                            <div class="config-section">
+                                <h3 class="config-title">🔑 API Configuration (Keys Never Leave Your Browser)</h3>
+                                <div class="input-grid">
+                                    <div class="input-group">
+                                        <label for="openai-key">OpenAI API Key</label>
+                                        <input type="password" id="openai-key" placeholder="sk-...">
+                                    </div>
+                                    <div class="input-group">
+                                        <label for="anthropic-key">Anthropic API Key</label>
+                                        <input type="password" id="anthropic-key" placeholder="sk-ant-...">
+                                    </div>
+                                    <div class="input-group">
+                                        <label for="google-key">Google API Key</label>
+                                        <input type="password" id="google-key" placeholder="API key...">
+                                    </div>
+                                    <div class="input-group">
+                                        <label for="local-model">Local Model Endpoint</label>
+                                        <input type="text" id="local-model" placeholder="e.g., http://localhost:11434">
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="config-section">
+                                <h3 class="config-title">🎯 Council Session Topic</h3>
+                                <div class="input-group">
+                                    <textarea id="council-topic" placeholder="Enter the question for your AI council to discuss...">How can AI help foster more compassionate and effective global governance?</textarea>
+                                </div>
+                            </div>
+
+                            <div class="config-section">
+                                <h3 class="config-title">🤖 Agent Configuration</h3>
+                                <div class="agent-config-grid">
+                                    <!-- Agent Card 1: Synthesist -->
+                                    <div class="agent-card synthesist">
+                                        <div class="agent-card-header">
+                                            <h4 data-original-title="Synthesist">Synthesist (Agent 1)</h4>
+                                            <button class="remove-agent-btn" aria-label="Remove Agent">&times;</button>
+                                        </div>
+                                        <div class="agent-card-controls">
+                                            <div class="input-group">
+                                                <label for="agent-1-provider">Provider</label>
+                                                <select id="agent-1-provider">
+                                                    <option value="google" selected>🔵 Google Gemini</option>
+                                                    <option value="openai">🟣 OpenAI GPT-4</option>
+                                                    <option value="anthropic">🟡 Anthropic Claude</option>
+                                                    <option value="local">⚙️ Local Model</option>
+                                                </select>
+                                            </div>
+                                            <div class="input-group">
+                                                <label for="agent-1-role">Role</label>
+                                                <select id="agent-1-role">
+                                                    <option value="synthesizer" selected>Synthesizer</option>
+                                                    <option value="facilitator">Facilitator</option>
+                                                    <option value="proposer">Proposer</option>
+                                                    <option value="critic">Critic</option>
+                                                </select>
+                                            </div>
+                                            <div class="input-group">
+                                                <label for="agent-1-personality">Personality</label>
+                                                <select id="agent-1-personality">
+                                                    <option value="creative" selected>💡 Creative</option>
+                                                    <option value="balanced">⚖️ Balanced</option>
+                                                    <option value="skeptical">🤔 Skeptical</option>
+                                                    <option value="technical">🔧 Technical</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Agent Card 2: Skeptic -->
+                                    <div class="agent-card skeptic">
+                                        <div class="agent-card-header">
+                                            <h4 data-original-title="Skeptic">Skeptic (Agent 2)</h4>
+                                            <button class="remove-agent-btn" aria-label="Remove Agent">&times;</button>
+                                        </div>
+                                        <div class="agent-card-controls">
+                                            <div class="input-group">
+                                                <label for="agent-2-provider">Provider</label>
+                                                <select id="agent-2-provider">
+                                                    <option value="anthropic" selected>🟡 Anthropic Claude</option>
+                                                    <option value="openai">🟣 OpenAI GPT-4</option>
+                                                    <option value="google">🔵 Google Gemini</option>
+                                                    <option value="local">⚙️ Local Model</option>
+                                                </select>
+                                            </div>
+                                            <div class="input-group">
+                                                <label for="agent-2-role">Role</label>
+                                                <select id="agent-2-role">
+                                                    <option value="critic" selected>Critic</option>
+                                                    <option value="facilitator">Facilitator</option>
+                                                    <option value="proposer">Proposer</option>
+                                                    <option value="synthesizer">Synthesizer</option>
+                                                </select>
+                                            </div>
+                                            <div class="input-group">
+                                                <label for="agent-2-personality">Personality</label>
+                                                <select id="agent-2-personality">
+                                                    <option value="skeptical" selected>🤔 Skeptical</option>
+                                                    <option value="balanced">⚖️ Balanced</option>
+                                                    <option value="creative">💡 Creative</option>
+                                                    <option value="technical">🔧 Technical</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Agent Card 3: Explorer -->
+                                    <div class="agent-card explorer">
+                                        <div class="agent-card-header">
+                                            <h4 data-original-title="Explorer">Explorer (Agent 3)</h4>
+                                            <button class="remove-agent-btn" aria-label="Remove Agent">&times;</button>
+                                        </div>
+                                        <div class="agent-card-controls">
+                                            <div class="input-group">
+                                                <label for="agent-3-provider">Provider</label>
+                                                <select id="agent-3-provider">
+                                                    <option value="openai" selected>🟣 OpenAI GPT-4</option>
+                                                    <option value="anthropic">🟡 Anthropic Claude</option>
+                                                    <option value="google">🔵 Google Gemini</option>
+                                                    <option value="local">⚙️ Local Model</option>
+                                                </select>
+                                            </div>
+                                            <div class="input-group">
+                                                <label for="agent-3-role">Role</label>
+                                                <select id="agent-3-role">
+                                                    <option value="proposer" selected>Proposer</option>
+                                                    <option value="facilitator">Facilitator</option>
+                                                    <option value="critic">Critic</option>
+                                                    <option value="synthesizer">Synthesizer</option>
+                                                </select>
+                                            </div>
+                                            <div class="input-group">
+                                                <label for="agent-3-personality">Personality</label>
+                                                <select id="agent-3-personality">
+                                                    <option value="creative" selected>💡 Creative</option>
+                                                    <option value="balanced">⚖️ Balanced</option>
+                                                    <option value="skeptical">🤔 Skeptical</option>
+                                                    <option value="technical">🔧 Technical</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                     <!-- Agent Card 4: Ethicist -->
+                                    <div class="agent-card ethicist">
+                                        <div class="agent-card-header">
+                                            <h4 data-original-title="Ethicist">Ethicist (Agent 4)</h4>
+                                            <button class="remove-agent-btn" aria-label="Remove Agent">&times;</button>
+                                        </div>
+                                        <div class="agent-card-controls">
+                                            <div class="input-group">
+                                                <label for="agent-4-provider">Provider</label>
+                                                <select id="agent-4-provider">
+                                                    <option value="local" selected>⚙️ Local Model</option>
+                                                    <option value="openai">🟣 OpenAI GPT-4</option>
+                                                    <option value="anthropic">🟡 Anthropic Claude</option>
+                                                    <option value="google">🔵 Google Gemini</option>
+                                                </select>
+                                            </div>
+                                            <div class="input-group">
+                                                <label for="agent-4-role">Role</label>
+                                                <select id="agent-4-role">
+                                                    <option value="critic" selected>Critic</option>
+                                                    <option value="facilitator">Facilitator</option>
+                                                    <option value="proposer">Proposer</option>
+                                                    <option value="synthesizer">Synthesizer</option>
+                                                </select>
+                                            </div>
+                                            <div class="input-group">
+                                                <label for="agent-4-personality">Personality</label>
+                                                <select id="agent-4-personality">
+                                                    <option value="balanced" selected>⚖️ Balanced</option>
+                                                    <option value="creative">💡 Creative</option>
+                                                    <option value="skeptical">🤔 Skeptical</option>
+                                                    <option value="technical">🔧 Technical</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button class="add-agent-btn">➕ Add Agent</button>
+                                </div>
+                            </div>
+
+                            <div class="council-actions">
+                                <button id="start-session-btn" class="action-btn primary">🚀 Start Council Session</button>
+                                <button id="continue-discussion-btn" class="action-btn" disabled>💬 Continue Discussion</button>
+                            </div>
+
+                            <div id="council-output-container"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section revelation-section">
+            <div class="container">
+                <div class="section-header reveal">
+                    <h2>What You Just Experienced</h2>
+                    <p>This isn't a demo or simulation. You just configured real AI agents to collaborate on complex questions.
+                    </p>
+                </div>
+                
+                <div class="revelation-grid">
+                    <div class="revelation-card reveal">
+                        <h3>🌍 World's First Universal AI Council</h3>
+                        <p>No other platform lets you configure Claude, GPT-4, and Gemini to collaborate in real-time. This capability literally doesn't exist anywhere else.</p>
+                    </div>
+                    <div class="revelation-card reveal">
+                        <h3>🔒 Complete Privacy & Security</h3>
+                        <p>Your API keys never leave your browser. All AI collaboration happens client-side. No data collection, no server risks, completely transparent.</p>
+                    </div>
+                    <div class="revelation-card reveal">
+                        <h3>⚡ Infinite Configurations</h3>
+                        <p>Any number of agents, any LLM providers, any roles, any personalities. Create councils for governance, technical review, or creative collaboration.</p>
+                    </div>
+                    <div class="revelation-card reveal">
+                        <h3>🏛️ True AI Democracy</h3>
+                        <p>Watch agents propose, critique, and synthesize ideas. See real consensus-building between different AI perspectives. This is epistemic democracy in action.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section impact-section">
+            <div class="container">
+                <div class="section-header reveal">
+                    <h2>The Impact of Collaboration</h2>
+                    <p>Multi-agent AI collaboration isn't just faster—it's fundamentally more effective and sustainable.</p>
+                </div>
+                <div class="impact-stats">
+                    <div class="stat-card reveal">
+                        <div class="stat-number">85%</div>
+                        <div class="stat-label">Cost Reduction</div>
+                    </div>
+                    <div class="stat-card reveal">
+                        <div class="stat-number">10x</div>
+                        <div class="stat-label">Faster Development</div>
+                    </div>
+                    <div class="stat-card reveal">
+                        <div class="stat-number">90%</div>
+                        <div class="stat-label">Less Energy Usage</div>
+                    </div>
+                    <div class="stat-card reveal">
+                        <div class="stat-number">100%</div>
+                        <div class="stat-label">Transparent & Auditable</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section enterprise-section">
+            <div class="container">
+                <div class="section-header reveal">
+                    <h2>Secure, Sovereign, Deployable</h2>
+                    <p>This architecture is not just a vision; it's an enterprise-ready reality that can be deployed entirely within your own network for complete data sovereignty.</p>
+                </div>
+                
+                <div class="enterprise-demo reveal">
+                    <h3>Interactive Security Demo: Public vs. Enterprise</h3>
+                    <div class="mode-selector">
+                        <button id="public-mode-btn" class="mode-btn active">
+                            <span class="mode-icon">🌐</span>
+                            <span class="mode-title">Public Cloud</span>
+                            <span class="mode-security">High Security</span>
+                        </button>
+                        <button id="enterprise-mode-btn" class="mode-btn">
+                            <span class="mode-icon">🏢</span>
+                            <span class="mode-title">On-Premises</span>
+                            <span class="mode-security">Maximum Security</span>
+                        </button>
+                    </div>
+                    
+                    <div id="public-mode-demo" class="security-mode-demo active">
+                         <!-- Content dynamically styled by CSS -->
+                    </div>
+                    <div id="enterprise-mode-demo" class="security-mode-demo">
+                         <!-- Content dynamically styled by CSS -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section business-section">
+            <div class="container">
+                <div class="section-header reveal">
+                    <h2>Transform Your Organization</h2>
+                </div>
+                <div class="use-cases">
+                    <div class="use-case reveal">
+                        <span class="use-case-icon">🏢</span>
+                        <h3>Enterprise Governance</h3>
+                        <p>Replace expensive consulting with AI councils that provide multiple perspectives on strategic decisions, policy development, and risk assessment.</p>
+                    </div>
+                    <div class="use-case reveal">
+                        <span class="use-case-icon">🔬</span>
+                        <h3>Research & Development</h3>
+                        <p>Accelerate innovation with AI agents that collaborate on technical challenges, peer review research, and synthesize complex findings.</p>
+                    </div>
+                    <div class="use-case reveal">
+                        <span class="use-case-icon">💡</span>
+                        <h3>Innovation Labs</h3>
+                        <p>Generate breakthrough ideas through AI agents with different creative approaches, technical expertise, and problem-solving styles.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="cta-section">
+            <div class="container">
+                <div class="section-header reveal">
+                    <h2>Ready to Deploy AI Democracy?</h2>
+                    <p>Join organizations pioneering the future of collaborative AI governance - from startups to Fortune 500 to government agencies.</p>
+                </div>
+                <div class="cta-buttons reveal">
+                    <a href="mailto:matthew@42.community?subject=AI Council Enterprise Pilot" class="cta-primary">Start Enterprise Pilot</a>
+                    <a href="mailto:matthew@42.community?subject=AI Council Partnership" class="cta-secondary">Explore Partnership</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <h3>C42 OS - Epistemic Democracy Platform</h3>
+                <p>Building the technical infrastructure for transparent, collaborative, and democratic AI governance.</p>
+                <p>
+                    <a href="https://42.community">42.community</a> | 
+                    <a href="mailto:matthew@42.community">matthew@42.community</a> | 
+                    Built by Matthew Cummins
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script type="module" src="index.tsx"></script>
+<script type="module" src="/index.tsx"></script>
+</body>
+</html>

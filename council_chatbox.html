@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>C42 Council Live Demo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background: #f0f2f5; padding: 40px;}
+        .chatbox { background: #fff; max-width: 550px; margin: 0 auto; border-radius: 12px; box-shadow: 0 6px 18px rgba(50,50,100,0.12); padding: 30px;}
+        .chatlog { max-height: 350px; overflow-y: auto; margin-bottom: 18px; }
+        .msg { margin-bottom: 16px; padding: 12px 18px; border-radius: 8px;}
+        .user { background: #d3eafd; text-align: right; }
+        .agent { background: #e7e5f7; }
+        .gpt { border-left: 5px solid #6a5acd;}
+        .claude { border-left: 5px solid #008080;}
+        .gemini { border-left: 5px solid #2cbb5a;}
+        .role { font-size: 11px; color: #555; font-style: italic;}
+        .input-row { display: flex; gap: 10px;}
+        input, button { padding: 12px; border-radius: 6px; border: 1px solid #ccc; font-size: 15px;}
+        button { background: #667eea; color: #fff; border: none; font-weight: bold; cursor: pointer;}
+        button:disabled { background: #bbb; cursor: not-allowed;}
+        h1 { text-align: center; margin-bottom: 24px; color: #222;}
+    </style>
+</head>
+<body>
+    <div class="chatbox">
+        <h1>C42 Council Demo</h1>
+        <div class="chatlog" id="chatlog"></div>
+        <form id="chatform" autocomplete="off">
+            <div class="input-row">
+                <input type="text" id="usermsg" placeholder="Type your question..." style="flex:1;">
+                <button type="submit">Send</button>
+            </div>
+        </form>
+    </div>
+<script>
+const API_URL = "https://YOUR-TUNNEL.trycloudflare.com/council/chat"; // Update with your public URL!
+
+const chatlog = document.getElementById("chatlog");
+const chatform = document.getElementById("chatform");
+const usermsg = document.getElementById("usermsg");
+
+function addMessage(content, sender="agent", agentClass="", role="") {
+    const msg = document.createElement("div");
+    msg.className = `msg ${sender} ${agentClass}`;
+    msg.innerHTML = (role ? `<span class='role'>${role}</span><br>` : "") + content;
+    chatlog.appendChild(msg);
+    chatlog.scrollTop = chatlog.scrollHeight;
+}
+
+chatform.onsubmit = async e => {
+    e.preventDefault();
+    const message = usermsg.value.trim();
+    if (!message) return;
+    addMessage(message, "user");
+    usermsg.value = "";
+    addMessage("...", "agent"); // loading indicator
+
+    try {
+        const res = await fetch(API_URL, {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({message})
+        });
+        const data = await res.json();
+        // Remove loading
+        chatlog.removeChild(chatlog.lastChild);
+
+        for (const r of data.responses) {
+            let agentClass = "";
+            if (r.agent.includes("GPT")) agentClass = "gpt";
+            if (r.agent.includes("Claude")) agentClass = "claude";
+            if (r.agent.includes("Gemini")) agentClass = "gemini";
+            addMessage(`<b>${r.agent}:</b> ${r.content}`, "agent", agentClass, r.role || "");
+        }
+    } catch (err) {
+        chatlog.removeChild(chatlog.lastChild);
+        addMessage("Error connecting to council.", "agent");
+    }
+};
+</script>
+</body>
+</html>
